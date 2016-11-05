@@ -14,7 +14,10 @@ int main(int argc, int* argv[])
 {
   int* a = NULL;
   NhapMang(&a, n);
-  delete[] a;
+  if (a != NULL)
+  {
+  	free(a);
+  }
   return 0;
 }
 void NhapMang(int** a, int &n)
