@@ -22,6 +22,7 @@ int main(int argc, int* argv[])
   n = 0;
   return 0;
 }
+
 void NhapMang(int** a, int* n)
 {
   *n = 0;
