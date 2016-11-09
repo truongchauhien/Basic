@@ -1,3 +1,4 @@
+```C
 void main()
 {
   char a[]; // Không khai báo số lượng phần tử sẽ gây lỗi.
@@ -15,3 +16,4 @@ void main()
   a[0] = 'z';
   // Bởi vì "abcdefgh" được sao chép vào vùng nhớ stack tức vào a[] nên có thể thay đổi được từng phần tử của a.
 }
+```
