@@ -5,37 +5,39 @@ Flush ở đây hiểu đơn giản là dọn dẹp (quét sạch) những gì c
 ## Trong C
 
 Ví dụ như trường hợp sau:  
-```
+```C
 #include <stdio.h>
 
-void NhapMang(int* a, int &n);
+void NhapMang(int* a, int* n);
 
 int main(int argc, int* argv[])
 {
   int* a = NULL;
-  NhapMang(&a, n);
+  int n;
+  NhapMang(&a, &n);
   if (a != NULL)
   {
   	free(a);
   }
+  n = 0;
   return 0;
 }
-void NhapMang(int** a, int &n)
+void NhapMang(int** a, int* n)
 {
-  n = 0;
+  *n = 0;
   int i;
   do
   {
     printf("Nhap so luong phan tu: ");
-    i = scanf("%d", &n);
+    i = scanf("%d", n);
   }
-  while (n > 0 && i == 1);
+  while (*n > 0 && i == 1);
   
-  *a = (int*)malloc(n * sizeof(int));
+  *a = (int*)malloc(*n * sizeof(int));
   
   if (*a != NULL)
   {
-    for (int j = 0; j < n; j++)
+    for (int j = 0; j < *n; j++)
     {
       printf("a[%d] = ", j);
       scanf("%d", (*a + j));
@@ -43,7 +45,7 @@ void NhapMang(int** a, int &n)
   }
   else
   {
-    n = 0;
+    *n = 0;
   }
 }
 ```
@@ -64,7 +66,7 @@ Khi thêm dòng lệnh trên vào, nếu "lỡ" như người dùng nhập sai t
 Việc nhập xuất thông thường trong console đều sử dụng các object như std::cin và std::cout. Ta cũng có thể kiểm tra việc nhập dữ liệu như thế nào và đảm bảo người dùng nhập đúng theo yêu cầu. Tuy nhiên, ta vẫn sẽ gặp phải trường hợp tương tự như trong C (tức ví dụ trên).
 
 Đoạn code sau là một giải pháp:
-```
+```C++
 if (std::cout.fail())
 {
 	std::cin.clear();
